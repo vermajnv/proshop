@@ -1,7 +1,6 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
 import { Row, Col, Image, ListGroup, Card, Button} from 'react-bootstrap';
-import Product from "../components/Product";
 import products from "../products";
 import Rating from "../components/Rating";
 
