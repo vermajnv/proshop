@@ -1,12 +1,14 @@
-import products from "../data/products.js";
-const getProducts = ((req, res, next) => {
+import Product from "../Models/product.model.js";
+
+const getProducts = ( async (req, res, next) => {
+        console.log('Here');
+        const products = await Product.find();
         return res.status(200).json(products)
     })
 
-const getProduct = ((req, res, next) => {
+const getProduct = ( async (req, res, next) => {
     const { id } = req.params;
-    const product = products.find((product) => product._id === id);
-
+    const product = await Product.findById(id);
     return res.status(200).json(product)
 })
 
