@@ -4,6 +4,7 @@ import {app} from "./app.js";
 dotenv.config();
 import connectDB from './config/db.js';
 // Connect DB
+console.log('here');
 connectDB();
 
 const PORT = process.env.PORT_BACKEND;

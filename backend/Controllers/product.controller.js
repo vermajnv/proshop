@@ -1,16 +1,36 @@
 import Product from "../Models/product.model.js";
+import { catchError, catchError1 } from "../utils/trycatch.js";
 
-const getProducts = ( async (req, res, next) => {
-        console.log('Here');
-        const products = await Product.find();
+/**
+ * @desc Get All product
+ * @type GET /api/product
+ * @access public
+ */
+const getProducts = catchError(( async (req, res, next) => {
+    const products = await Product.find();
+    if(products)
+    {
         return res.status(200).json(products)
-    })
+    }
+    res.status(404);
+    throw new Error('Product Not Found')
+}))
 
-const getProduct = ( async (req, res, next) => {
+/**
+ * @desc Get single product description
+ * @type GET /api/product/:id
+ * @access Public
+ */
+const getProduct = catchError(( async (req, res, next) => {
     const { id } = req.params;
     const product = await Product.findById(id);
-    return res.status(200).json(product)
-})
+    if(product)
+    {
+        return res.status(200).json(product)
+    }
+    res.status(404);
+    throw new Error('Product not found');
+}))
 
 export {
     getProducts,
